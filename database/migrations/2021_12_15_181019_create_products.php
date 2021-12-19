@@ -21,7 +21,7 @@ class CreateProducts extends Migration
             $table->text('descriptions');
             $table->integer('stock');
             $table->double('free_shipping');
-            $table->boolean('rate');
+            $table->double('rate');
             $table->timestamps();
         });
     }

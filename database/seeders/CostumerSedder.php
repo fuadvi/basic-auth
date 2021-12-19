@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use app\Models\Customer;
+use App\Models\Customer;
 use Illuminate\Database\Seeder;
 use Faker\Factory as DataPalsu;
 use Illuminate\Support\Facades\Hash;
