@@ -1,18 +1,18 @@
 function refreshData() {
     $.ajax({
-        url: '/api/orders',
+        url: '/api/order',
         methods: 'GET',
-        type: 'json',
+        dataType: 'json',
         headers: {'token': window.localStorage['token'] },
         success: (res) => {
             console.log(res)
-            const data = res.data.data;
-            const content = '';
+            var data = res.data.data;
+            var content = '';
 
             for (let i = 0; i < data.length; i++) {
-                const item = data[i];
-                const btnhapus = `<a  class='link-hapus' href='#' data-id='${item.id}' >Hapus</a>`;
-                const btnedit = `<a  class='link-edit' href='#' data-id='${item.id}' >edit</a>`;
+                var item = data[i];
+                var btnhapus = `<a  class='link-hapus' href='#' data-id='${item.id}' >Hapus</a>`;
+                var btnedit = `<a  class='link-edit' href='#' data-id='${item.id}' >edit</a>`;
 
                 content +=`
                     <tr>
@@ -23,11 +23,15 @@ function refreshData() {
                         <td>${item.qty}</td>
                         <td>${item.first_name} ${item.last_name}</td>
                     </tr>
-                `
-
+                `;
             }
+            $('table.table tbody').html(content);
+        },
+        error:(res,status,err) =>{
+            console.log(res);
+            alert('Terjadi kesalahan');
         }
-    })
+    });
 
 }
 
@@ -44,19 +48,19 @@ document.addEventListener('DOMContentLoaded',(c) => {
     refreshData();
 
     $('body').on('click','a.link-hapus',(e) =>{
-        const c = confirm('Apakah Yakin Mau Hapus Data');
+        var c = confirm('Apakah Yakin Mau Hapus Data');
 
         if (c) {
-            const id = $(e.currentTarget).data('id');
+            var id = $(e.currentTarget).data('id');
             hapus(id)
         }
     });
 
     $('body').on('click','a.link-edit',(e) =>{
-        const c = confirm('Apakah Yakin Mau edit Data');
+        var c = confirm('Apakah Yakin Mau edit Data');
 
         if (c) {
-            const id = $(e.currentTarget).data('id');
+            var id = $(e.currentTarget).data('id');
             edit(id)
         }
     });

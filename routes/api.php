@@ -20,6 +20,6 @@ Route::get('/auth', [AuthController::class, 'auth']);
 Route::get('/product', [ProductController::class, 'findAll']);
 Route::get('/product/{product}', [ProductController::class, 'findOne']);
 Route::post('/order', [OrderController::class, 'store']);
-Route::get('/order', [OrderController::class, 'findAll'])->middleware('authorization');
+Route::get('/order', [OrderController::class, 'findAll']);
 Route::put('/order/{order}', [OrderController::class, 'update']);
 Route::delete('/order/{order}', [OrderController::class, 'destroy']);
